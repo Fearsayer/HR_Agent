@@ -1,0 +1,54 @@
+cases:
+
+  - id: F1
+    description: List active Engineering employees
+    prompt: "List all active employees in Engineering."
+    expected_tools:
+      - list_employees
+    forbidden_tools:
+      - get_employee
+
+  - id: F2
+    description: Get a full employee profile by known ID
+    prompt: "Show me the full profile for EMP-001."
+    expected_tools:
+      - get_employee
+    forbidden_tools:
+      - list_employees
+
+  - id: F3
+    description: Onboard a new employee
+    prompt: "Onboard Priya Nair, priya.nair@acme.test, Sales, Account Executive, hired today, location Mumbai."
+    expected_tools:
+      - create_employee
+
+  - id: F4
+    description: Get organization headcount
+    prompt: "Give me headcount by department and total active employees."
+    expected_tools:
+      - get_org_summary
+
+  - id: F5
+    description: Unknown employee ID
+    prompt: "Get the profile for EMP-999."
+    expected_tools:
+      - get_employee
+    expect_error: true
+
+  - id: F6
+    description: Do not invent information
+    prompt: "What is the phone number for employee EMP-001?"
+    expected_tools:
+      - get_employee
+
+  - id: F7
+    description: Deactivate employee with HITL
+    prompt: "Deactivate EMP-002 because of resignation."
+    expected_tools:
+      - deactivate_employee
+
+  - id: F8
+    description: Update employee with HITL
+    prompt: "Update EMP-001 title to Senior Software Engineer."
+    expected_tools:
+      - update_employee
